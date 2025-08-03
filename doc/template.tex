@@ -1,100 +1,102 @@
-\documentclass[
-  11pt, 
-  a4paper,
-  sans,
-]{../source/personalcv}
+\documentclass{../source/personalcv}
 
-\author{Felipe}{Pinto}
-\quote{%
-  To~see~a~world~in~a~grain~of~sand\\[-1ex]%
-  And~heaven~in~a~wild~flower\\[-1ex]%
-  Hold~infinity~in~the~palm~of~your~hand\\[-1ex]%
-  And~eternity~in~an~hour%
+% Define page and margins
+
+\geometry{
+  a4paper, % {210mm, 297mm}, % (√2:1 ) A4
+  top      = .02\paperheight,
+  bottom   = .02\paperheight,
+  left     = .04\paperwidth,
+  right    = .04\paperwidth,
+  portrait = true,
 }
-\email{felipealexandrepinto@gmail.com}
+
+% Define colors
+
+\definecolor{foreground}{named}{black}
+\definecolor{background}{named}{white}
+\definecolor{link}{named}{black}
+\definecolor{accent}{named}{blue}
+\definecolor{grey}{HTML}{777777}
+
+% metadata and title
+
+\author{first}{last}
+\quote{%
+  Very\\
+  Interesting\\
+  Quote
+}
+
+% available icons from fontawesome6: \fa...
 
 \begin{document}
 
-% \insertauthor{}
-% \insertquote
-% \insertemail{}
-
 \noindent
 \begin{tabular}{@{}l@{}}
-  \insertwhatsapp{933682916}{(+351)~933~682~916}
-  \insertsocialemail{felipealexandrepinto@gmail.com}
-  \insertlinkedin{felipebpinto}
-  \insertgithub{Felipe-9}
-  \insertgitlab{Felipe-Pinto}
-  \inserttexstackexchange{241136}{felipe9}
-  % \insertorcid{0009-0004-0721-3057}
+  \insertwhatsapp{123456789}{(+012)~123~456~789}
+  \insertsocialemail{your@mail.com}
+  \insertlinkedin{profile}
+  \insertgithub{profile}
+  \insertgitlab{profile}
+  \inserttexstackexchange{number}{profile}
+  % \insertorcid{numbers}
 \end{tabular}
 
 \section{Summary}
 
-Motivated and adaptable Chemical and Biochemical Engineering student with a strong self-taught background in programming.
-Open-source contributor and maintainer, with experience in Linux systems, scripting and version control.
-Proficient in Nix, Python, JavaScript, Bash and other languages \& tools, with a passion for continuous learning.
-Currently seeking an opportunity to support my studies while gaining real-world experience in a field closely aligned with my interests.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
 
 \section{Technical Skills}
 
 \cvitem*[\faCode]
-{\textbf{Programming Languages:~} Nix, Bash, Python, JavaScript, Lua, VBA, SQL, Rust (learning).}
-[\faPython\faJs\faRust\faTerminal]
+{\textbf{Programming Languages:~} C, C++.}
 
 \cvitem*[\faGears]
-{\textbf{Tools \& Technologies:~} Git, Nix Shells, LaTeX, LibreOffice Calc, Excel, FFmpeg, Neovim, shell scripting, terminal.}
-[\faGit\LaTeX\faFileExcel]
+{\textbf{Tools \& Technologies:~} Git.}
+[\faGit]
 
 \cvitem*[\faComputer]
-{\textbf{Operating Systems:~} Linux (daily driver), macOS.}
-[\faLinux\faApple]
+{\textbf{Operating Systems:~} Linux (daily driver).}
+[\faLinux]
 
 \cvitem*[\faLanguage]
 {\textbf{Languages:~} Portuguese (native), English (fluent).}
 
 \section{Work Experience}
 
-\cventry{2019\to 2022}{Volunteer Technology Developer}{Col\'{e}gio Ci\^{e}ncias Aplicadas, Brazil}{}
-\cvitem{Created an Excel + VBA tool to automate grading and generate statistical reports. The tool is still in use and provided tangible value to educators.}
-\cvitem{Designed a promotional website using Wix and JavaScript to offer the grading tool as a service. Project halted before launch due to technical limitations and operational constraints.}
-\cvitem{Developed a course registration website using Wix and JavaScript. Designed layout and handled front-end scripting; project discontinued due to lack of payment system and user account handling.}
+\cventry{YYYY--YYYY}{Position}{Institution name, location}{}
+\cvitem{Created\dots}
+\cvitem{Designed\dots}
+\cvitem{Developed\dots}
 
 \section{Open Source Projects}
 
-\cventry{2025\to present}{Maintainer \& Contributor}{Nixpkgs -- NixOS Project}
-[\includegraphics[width=2em]{./figures/nix-snowflake-colours.png}]
-\cvitem[\faGithub]{Maintainer of packages on the official nixpkgs repository on github.}
-\cvitem{Collaborate with a global open-source community using Git, Nix and CI/CD tools.}
+\cventry{YYYY--YYYY}{Title}{subtitle}
+[\includegraphics[width=2em,draft]{some_image.png}]
+\cvitem[\faGithub]{Maintainer of\dots}
+\cvitem{<more info>}
 
-\cventry{2020\to present}{Personal Projects}{Independent}
-\cvitem{Developed small applications and services using Bash, Nix, Python and Rust.}
-\cvitem{Created and maintained personal Nix packages and system configurations.}
-\cvitem[\faCodeBranch]{Over 60 repositories across GitHub and GitLab.}
+\cventry{YYYY--YYYY}{Projects}{Independent}
+\cvitem{Developed\dots}
+\cvitem{Created\dots}
 
 \section{Education}
 
 \cventry
-{2021\to present}
-{Bachelor's in Chemical and Biochemical Engineering}
-{NOVA FCT (School of Sciences and Technology), Portugal}
-[\includegraphics[width=4em]{./figures/nova_fct_logo.png}]
-\cvitem[\faGraduationCap]{Final-year student. Expected graduation: 2026--2027.}
-\cvitem[\faCode]{Relevant coursework: Informatics for Science and Engineering (Python, SQL).}
-\cvitem{Note: Studies temporarily on hold for one year (2025--2026) to fund tuition through full-time employment.}
+{YYYY--YYYY}
+{Bachelor's in \dots}
+{University, Country}
+[\includegraphics[width=4em,draft]{uni_image.png}]
+\cvitem[\faGraduationCap]{Expected graduation: YYYY--YYYY.}
+\cvitem[\faCode]{Relevant coursework:\dots}
 
 \cventry
-{2017\to 2020}
-{Bachelor's in Electrical Engineering}
-{UFRN (Federal University of Rio Grande do Norte), Brazil}
-[\includegraphics[width=4em]{./figures/ufrn.png}]
-\cvitem{Completed 3 years of coursework before tranferring to current program.}
-\cvitem[\faCode]{Relevant coursework: Algorithms and Logic of Programming (C), Object-Oriented Programming (C++).}
-
-% \section{Languages}
-%
-% \cvitem*{English: Fluent}
-% \cvitem*{Portuguese: Native Proficiency}
+{YYYY--YYYY}
+{Bachelor's in \dots}
+{Uni, Country}
+[\includegraphics[width=4em,draft]{other_uni.png}]
+\cvitem{relevant information\dots}
+\cvitem[\faCode]{Relevant coursework:\dots}
 
 \end{document}

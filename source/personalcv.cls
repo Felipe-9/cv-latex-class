@@ -14,33 +14,11 @@
 %% INFO: colors
 \RequirePackage{xcolor}
 
-\definecolor{foreground}{named}{black}
-\definecolor{background}{named}{white}
-
-\definecolor{accent-0}{HTML}{001b17} % #001b17
-\definecolor{accent-1}{HTML}{005146} % #005146
-\definecolor{accent-2}{HTML}{148e7c} % #148e7c
-\definecolor{accent-3}{HTML}{55cbb7} % #55cbb7
-\definecolor{accent-4}{HTML}{71e5cf} % #71e5cf
-\definecolor{accent-5}{HTML}{8cffe9} % #8cffe9
-\definecolor{accent-6}{HTML}{e3fef8} % #e3fef8
-\definecolor{accent}{named}{accent-2} % #148e7c
-
-\definecolor{grey-0}{HTML}{111621} % #111621
-\definecolor{grey-1}{HTML}{3f4552} % #3f4552
-\definecolor{grey-2}{HTML}{747a88} % #747a88
-\definecolor{grey-3}{HTML}{aeb4c4} % #aeb4c4
-\definecolor{grey-4}{HTML}{c7cddd} % #c7cddd
-\definecolor{grey-5}{HTML}{e0e6f7} % #e0e6f7
-\definecolor{grey-6}{HTML}{f3f7ff} % #f3f7ff
-\definecolor{grey}  {named}{grey-2} % #3f4552
-
-% \definecolor{link}{HTML}{0b1b08} % #0b1b08
-% \definecolor{link}{HTML}{2c4f25} % #2c4f25
-\definecolor{link}{HTML}{518b45} % #518b45
-% \definecolor{green-0}{HTML}{0b1b08} % #0b1b08
-% \definecolor{green-1}{HTML}{2c4f25} % #2c4f25
-% \definecolor{green-2}{HTML}{518b45} % #518b45
+\providecolor{foreground}{named}{black}
+\providecolor{background}{named}{white}
+\providecolor{accent}{named}{blue}
+\providecolor{grey}{HTML}{777777}
+\providecolor{link}{named}{red}
 
 \RequirePackage{graphicx}
 
@@ -119,14 +97,17 @@
 % \setlength{\parindent}{0pt}
 % \setlength{\parskip}{5pt}
 
+\setlength\paperheight{297mm}
+\setlength\paperwidth{210mm}
+
 \RequirePackage{geometry}
 \geometry{
-  a4paper,  % {210mm, 297mm}, % (√2:1 ) A4
-  top       = .02\paperheight, % 21mm
-  bottom    = .02\paperheight, % 21mm
-  left      = .04\paperwidth,
-  right     = .04\paperwidth,
-  portrait  = true,
+  a4paper, % {210mm, 297mm}, % (√2:1 ) A4
+  top      = .02\paperheight, % 21mm
+  bottom   = .02\paperheight, % 21mm
+  left     = .04\paperwidth,
+  right    = .04\paperwidth,
+  portrait = true,
 }
 
 \pagestyle{empty}
@@ -180,9 +161,9 @@
 
 \RequirePackage{setspace}
 
-\newcommand\insertauthor{{\HUGE\textcolor{accent-2!50!grey-2!65}{\@firstname}~\textcolor{accent-2}{\@lastname}}}
+\newcommand\insertauthor{{\HUGE\textcolor{accent!50!grey!65}{\@firstname}~\textcolor{accent}{\@lastname}}}
 \newcommand\insertquote{{%
-  \scriptsize\color{accent-2!90}\itshape%
+  \scriptsize\color{accent!90}\itshape%
   \@quote%
 }}
 
@@ -231,7 +212,7 @@
 \NewDocumentCommand\cventry{m m m o}{
   \noindent
   \begin{minipage}[t]{.15\textwidth}
-    \color{accent-2}
+    \color{accent}
     #1
   \end{minipage}%
   \hspace{3pt}%
@@ -257,7 +238,7 @@
     \noindent%
     \hspace{.15\textwidth}\hspace{3pt}%
   }%
-  {\color{accent-2}
+  {\color{accent}
     \IfNoValueTF{#2}
     {\faCaretRight}
     % {\faChevronRight}
