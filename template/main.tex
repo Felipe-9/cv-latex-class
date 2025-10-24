@@ -1,6 +1,7 @@
-\documentclass{../source/fp-cv}
+\documentclass{fp-cv}
 
 % Define page and margins
+\usepackage{multicol}
 
 \geometry{
   a4paper, % {210mm, 297mm}, % (√2:1 ) A4
@@ -59,7 +60,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 {\textbf{Programming Languages:} C, C++.}
 
 \cvitem*[\faGears]
-{\textbf{Tools \& Technologies:} Git.}
+{\textbf{Tools \& Technologies:} Git, \LaTeX.}
 
 \cvitem*[\faComputer]
 {\textbf{Operating Systems:} Linux (daily driver).}
@@ -71,40 +72,45 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 \cventry{YYYY--YYYY}%
 {Position}%
-{Institution name, location}
+[Institution name, location]
+
 \cvitem{Created\dots}
 \cvitem{Designed\dots}
 \cvitem{Developed\dots}
 
 \section{Open Source Projects}
 
-\cventry{YYYY--YYYY}%
+\cventry{YYYY\dots}%
 {Title}%
-{subtitle}
-[\includegraphics[width=2em,draft]{some_image.png}]
+[subtitle]
+% [\includegraphics[width=2em]{example-image}]
 
 \cvitem[\faGithub]{Maintainer of\dots}
 \cvitem{<more info>}
 
-\cventry{YYYY--YYYY}{Projects}{Independent}
+\cventry{YYYY\dots}%
+{Projects}%
+[Independent]
 \cvitem{Developed\dots}
 \cvitem{Created\dots}
 
 \section{Education}
 
 \cventry
-{YYYY--YYYY}
-{Bachelor's in \dots}
-{University, Country}
-[\includegraphics[width=4em,draft]{}]
+{YYYY--YYYY}%
+{Bachelor's in \dots}%
+[University, Country]
+% [\includegraphics[width=4em]{example-image}]
+
 \cvitem[\faGraduationCap]{Expected graduation: YYYY--YYYY.}
 \cvitem[\faCode]{Relevant coursework:\dots}
 
-\cventry
-{YYYY--YYYY}
-{Bachelor's in \dots}
-{Uni, Country}
-[\includegraphics[width=4em,draft]{}]
+\cventry%
+{YYYY--YYYY}%
+{Bachelor's in \dots}%
+[Uni, Country]
+% [\includegraphics[width=4em]{example-image}]
+
 \cvitem{relevant information\dots}
 \cvitem[\faCode]{Relevant coursework:\dots}
 
