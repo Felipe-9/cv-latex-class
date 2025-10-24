@@ -1,13 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{personalcv}[2025-07-16 personal curriculum vitae and letter document class]
+\ProvidesClass{fp-cv}[2025-07-16 Felipe Pinto's Curriculum Vitae Class]
 
 % process given options
 \ProcessOptions\relax
+
+\RequirePackage{luacode}
 
 %% Apply size
 \RequirePackage{etoolbox}
 \RequirePackage{calc}
 \RequirePackage{xparse}
+\RequirePackage{adjustbox}
 
 \RequirePackage{ifthen}
 
@@ -19,8 +22,17 @@
 \providecolor{accent}{named}{blue}
 \providecolor{grey}{HTML}{777777}
 \providecolor{link}{named}{red}
+\providecolor{accent-secondary}{named}{accent}
+
+\colorlet{accent-faded}{accent!90}
+
+\newcommand\setaccent[2][90]{
+  \colorlet{accent}{#2}%
+  \colorlet{accent-faded}{accent!#1}%
+}
 
 \RequirePackage{graphicx}
+
 
 % \RequirePackage{tikz}
 % \usetikzlibrary{fadings}
@@ -159,20 +171,31 @@
 \newcommand*{\quote}[1]{\gdef\@quote{#1}}
 \newcommand*{\@quote}{}
 
+% socials
+\newcommand*{\socials}[1]{\gdef\@socials{#1}}
+\newcommand*{\@socials}{}
+
+% logo
+\newcommand*{\logo}[1]{\gdef\@logo{#1}}
+\newcommand*{\@logo}{}
+
 \RequirePackage{setspace}
 
 \newcommand\insertauthor{{\HUGE\textcolor{accent!50!grey!65}{\@firstname}~\textcolor{accent}{\@lastname}}}
 \newcommand\insertquote{{%
-  \scriptsize\color{accent!90}\itshape%
-  \@quote%
+  \begin{adjustbox}{valign=b, minipage=\textwidth}
+    \setlength\baselineskip{-0.1ex}
+    \scriptsize\color{accent-faded}\itshape%
+    \@quote%
+  \end{adjustbox}
 }}
 
 \PassOptionsToPackage{fixed}{fontawesome6}
 \RequirePackage{fontawesome6}
 
-\newcommand\insertsocialrow[4]{\href{#1}{#2~#3~#4} \\}
+\newcommand\insertsocialrow[4]{\href{#1}{{\color{accent-secondary}#2}~#3~#4} \\}
 
-\newcommand\insertsocialemail[1]{\insertsocialrow{mailto:#1}{\faEnvelope}{email:}{#1}}
+\newcommand\insertsocialemail[1]{\insertsocialrow{mailto:#1}{\faEnvelope}{Email:}{#1}}
 \newcommand\insertlinkedin[1]{\insertsocialrow{https://www.linkedin.com/in/#1}{\faLinkedin}{Linkedin:}{#1}}
 \newcommand\insertgithub[1]{\insertsocialrow{https://github.com/#1}{\faGithub}{GitHub:}{#1}}
 \newcommand\insertgitlab[1]{\insertsocialrow{https://gitlab.com/#1}{\faGitlab}{GitLab:}{#1}}
@@ -181,83 +204,95 @@
 \newcommand\insertwhatsapp[2]{\insertsocialrow{https://wa.me/#1}{\faWhatsapp}{WhatsApp:}{#2}}
 \newcommand\insertmatrix[1]{\insertsocialrow{matrix.to/#1}{\faComments}{Matrix:}{#1}}
 
+\providecommand\quotewidth{10em}
+\providecommand\logoheight{2ex}
+
 \newcommand\maketitle{%
   \noindent
-  \begin{minipage}[b]{.7125\textwidth} % .95*3/4 = 0.7125
+  \begin{minipage}[b]{\linewidth-\quotewidth-1pt} % .95*3/4 = 0.7125
     \insertauthor
   \end{minipage}%
-  \hfill%
-  \begin{minipage}[b]{.2375\textwidth} % .95/4 = .2375
+  \hspace{1pt}%
+  \begin{minipage}[b]{\quotewidth} % .95/4 = .2375
     \insertquote
   \end{minipage}\\[-0.9ex]
   \noindent
   {\color{accent}\rule{\linewidth}{1pt}}
   \par\nopagebreak
   % \faderule{\linewidth}{1pt}
-  \vspace{3pt}
+  \vspace{-13pt}
 }
+
+\newlength\secspacebf
+\setlength\secspacebf{6pt}
 
 \newcommand\section[1]{
-  {
-    \vspace{6pt}
-    \color{accent}
-    \noindent
-    {\Large#1}\\[-1.7ex]
-    \rule{\linewidth}{0.4pt}
-    \par\nopagebreak
-  }
-  % \vspace{0pt}
-}
-
-\NewDocumentCommand\cventry{m m m o}{
+  \vspace{\secspacebf}
   \noindent
-  \begin{minipage}[t]{.15\textwidth}
-    \color{accent}
-    #1
-  \end{minipage}%
-  \hspace{3pt}%
-  \begin{minipage}[t]{.75\textwidth}
-    #2\\[-2pt]
-    {\footnotesize #3}
-  \end{minipage}%
-  \IfNoValueF{#4}{
-    \hfill
-    \begin{minipage}{4em}
-      \hfill
-      #4
-    \end{minipage}
-  }
-  \vspace{6pt}\par
+  {%
+    \color{accent}%
+    \Large#1%
+    \\[-1.2ex]
+    \rule{\linewidth}{0.4pt}%
+  }%
+  \par\nopagebreak
+  % \vspace{1pt}
 }
 
-\NewDocumentCommand\cvitem{s o m o}{
-  \IfBooleanTF{#1}{%
-    \noindent%
-  }{%
-    \vspace{-3pt}%
-    \noindent%
-    \hspace{.15\textwidth}\hspace{3pt}%
+\newcommand\subsection[2][]{
+    \par\noindent
+    {\color{accent}#2}%
+    \hfill#1\\[-1.7ex]
+    \par\nopagebreak
+}
+
+\newlength\entrysep
+\setlength\entrysep{\dimeval{16.5pt+3pt}}
+% \setlength\entrysep{\dimeval{1.0em+5pt}}
+
+\NewDocumentCommand\cventry{
+  m % #1 year-year
+  m % #2 title
+  o % #3 subtitle
+  o % #4 image
+}{
+  \begingroup
+  \setlength{\parindent}{-\entrysep}
+  \setlength{\leftskip}{\entrysep}
+  \par\addvspace{.3\secspacebf}
+  \makebox[\entrysep][l]{\smash{\raggedleft\color{accent}\adjustbox{rotate=90, origin=rt, raise={.4ex}{1ex}{0pt}}{#1}}}%
+  #2%
+  \IfValueT{#3}{
+    \IfValueT{#4}{
+      \hfill\smash{\adjustbox{valign=t}{#4}}
+    }
+    \par
+    \noindent{\scriptsize #3\par}%
+  }
+  \addvspace{.15\secspacebf}
+  \nopagebreak
+  \endgroup
+}
+
+\NewDocumentCommand\cvitem{
+  s % 1 dont align with entry
+  O{\faCaretRight} % 2 symbol
+  +m % 3 content
+}{
+  \nopagebreak%
+  \begingroup
+  \setlength{\parindent}{-\entrysep}
+  \IfBooleanTF{#1}{
+    \setlength{\leftskip}{\entrysep}
+  }{
+    \setlength{\leftskip}{2\entrysep}
+  }
+  \makebox[\entrysep]{%
+    \smash{\color{accent-secondary}#2}%
   }%
-  {\color{accent}
-    \IfNoValueTF{#2}
-    {\faCaretRight}
-    % {\faChevronRight}
-    {#2}
-  }
-  \hspace{3pt}%
-  \begin{minipage}[t]{.8\textwidth}
-    #3%
-  \end{minipage}%
-  \IfNoValueF{#4}{%
-    \hfill
-    \begin{minipage}{6em}
-      \hfill
-      \raggedleft
-      #4%
-    \end{minipage}%
-  }
-  \par
-  \vspace{3pt}
+  \ignorespaces#3\par%
+  \addvspace{3pt}%
+  \endgroup
 }
 
 \AtBeginDocument{%
