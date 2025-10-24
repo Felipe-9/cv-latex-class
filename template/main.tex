@@ -1,4 +1,4 @@
-\documentclass{../source/personalcv}
+\documentclass{../source/fp-cv}
 
 % Define page and margins
 
@@ -16,32 +16,38 @@
 \definecolor{foreground}{named}{black}
 \definecolor{background}{named}{white}
 \definecolor{link}{named}{black}
-\definecolor{accent}{named}{blue}
 \definecolor{grey}{HTML}{777777}
+
+\definecolor{accent}{named}{blue}
+\definecolor{accent-secondary}{named}{cyan}
 
 % metadata and title
 
-\author{first}{last}
+\author{john}{doe}
 \quote{%
   Very\\
   Interesting\\
   Quote
 }
 
+\setlength\secspacebf{15pt} % control spacing
+
 % available icons from fontawesome6: \fa...
 
 \begin{document}
 
 \noindent
-\begin{tabular}{@{}l@{}}
+\begin{multicols}{2}
+  \noindent
   \insertwhatsapp{123456789}{(+012)~123~456~789}
-  \insertsocialemail{your@mail.com}
-  \insertlinkedin{profile}
-  \insertgithub{profile}
-  \insertgitlab{profile}
-  \inserttexstackexchange{number}{profile}
+  \insertsocialemail{johndoe@mail.com}
+  \insertlinkedin{johndoe}
+  \insertgithub{johndoe}
+  \insertgitlab{johndoe}
+  \inserttexstackexchange{number}{johndoe}
   % \insertorcid{numbers}
-\end{tabular}
+\end{multicols}
+\vspace{-13pt}
 
 \section{Summary}
 
@@ -50,30 +56,33 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 \section{Technical Skills}
 
 \cvitem*[\faCode]
-{\textbf{Programming Languages:~} C, C++.}
+{\textbf{Programming Languages:} C, C++.}
 
 \cvitem*[\faGears]
-{\textbf{Tools \& Technologies:~} Git.}
-[\faGit]
+{\textbf{Tools \& Technologies:} Git.}
 
 \cvitem*[\faComputer]
-{\textbf{Operating Systems:~} Linux (daily driver).}
-[\faLinux]
+{\textbf{Operating Systems:} Linux (daily driver).}
 
 \cvitem*[\faLanguage]
-{\textbf{Languages:~} Portuguese (native), English (fluent).}
+{\textbf{Languages:} Portuguese (native), English (fluent).}
 
-\section{Work Experience}
+\section{Professional Experience}
 
-\cventry{YYYY--YYYY}{Position}{Institution name, location}{}
+\cventry{YYYY--YYYY}%
+{Position}%
+{Institution name, location}
 \cvitem{Created\dots}
 \cvitem{Designed\dots}
 \cvitem{Developed\dots}
 
 \section{Open Source Projects}
 
-\cventry{YYYY--YYYY}{Title}{subtitle}
+\cventry{YYYY--YYYY}%
+{Title}%
+{subtitle}
 [\includegraphics[width=2em,draft]{some_image.png}]
+
 \cvitem[\faGithub]{Maintainer of\dots}
 \cvitem{<more info>}
 
@@ -87,7 +96,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 {YYYY--YYYY}
 {Bachelor's in \dots}
 {University, Country}
-[\includegraphics[width=4em,draft]{uni_image.png}]
+[\includegraphics[width=4em,draft]{}]
 \cvitem[\faGraduationCap]{Expected graduation: YYYY--YYYY.}
 \cvitem[\faCode]{Relevant coursework:\dots}
 
@@ -95,7 +104,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 {YYYY--YYYY}
 {Bachelor's in \dots}
 {Uni, Country}
-[\includegraphics[width=4em,draft]{other_uni.png}]
+[\includegraphics[width=4em,draft]{}]
 \cvitem{relevant information\dots}
 \cvitem[\faCode]{Relevant coursework:\dots}
 
