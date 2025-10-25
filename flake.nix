@@ -49,7 +49,6 @@
                 texlive = pkgs.texlive.combine {
                   pkgFilter = pkg: with pkg; tlType == "run" || tlType == "bin" || tlType == "doc";
 
-                  fp-cv.pkgs = [ self.packages.${system}.default ];
                   inherit (pkgs.texlive)
                     scheme-basic
 
