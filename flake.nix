@@ -30,38 +30,54 @@
           installPhase = ''
             mkdir -p $out/tex/latex
             cp -r $src/fp-cv.cls $out/tex/latex
+
+            # create shellhook to expose to texlive
+            mkdir -p $out/nix-support
+            echo "export TEXMFHOME=\"$TEXMFHOME:$out\"" > $out/nix-support/setup-hook
           '';
           passthru.tlType = "run";
         };
 
-        devShells.default =
+        devShells =
           let
-            texlive = pkgs.texlive.combine {
-              pkgFilter = pkg: with pkg; tlType == "run" || tlType == "bin" || tlType == "doc";
-
-              fp-cv.pkgs = [ self.packages.${system}.default ];
-              inherit (pkgs.texlive)
-                scheme-basic
-
-                # Depedencies
-                adjustbox
-                etoolbox
-                fontawesome6
-                fontsize
-                fontspec
-                geometry
-                graphics
-                hyperref
-                latexmk
-                luacode
-                luatexbase
-                setspace
-                xcolor
-
-                ;
-            };
+            fp-cv = self.packages.${system}.default;
           in
-          pkgs.mkShell { buildInputs = [ texlive ]; };
+          {
+            default = pkgs.mkShell { buildInputs = [ fp-cv ]; };
+            withTexlive =
+              let
+                texlive = pkgs.texlive.combine {
+                  pkgFilter = pkg: with pkg; tlType == "run" || tlType == "bin" || tlType == "doc";
+
+                  fp-cv.pkgs = [ self.packages.${system}.default ];
+                  inherit (pkgs.texlive)
+                    scheme-basic
+
+                    # Depedencies
+                    adjustbox
+                    etoolbox
+                    fontawesome6
+                    fontsize
+                    fontspec
+                    geometry
+                    graphics
+                    hyperref
+                    latexmk
+                    luacode
+                    luatexbase
+                    setspace
+                    xcolor
+
+                    ;
+                };
+              in
+              pkgs.mkShell {
+                buildInputs = [
+                  fp-cv
+                  texlive
+                ];
+              };
+          };
       }
     );
 }
