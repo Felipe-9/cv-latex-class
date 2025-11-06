@@ -19,12 +19,13 @@
 
 \providecolor{foreground}{named}{black}
 \providecolor{background}{named}{white}
-\providecolor{accent}{named}{blue}
 \providecolor{grey}{HTML}{777777}
 \providecolor{link}{named}{red}
-\providecolor{accent-secondary}{named}{accent}
 
-\colorlet{accent-faded}{accent!90}
+\providecolor{accent}{named}{blue}
+\providecolor{accent-secondary}{named}{cyan}
+
+\colorlet{accent-faded}{accent!80}
 
 \newcommand\setaccent[2][90]{
   \colorlet{accent}{#2}%
@@ -167,28 +168,26 @@
 \newcommand*{\email}[1]{\gdef\@email{#1}}
 \newcommand*{\@email}{}
 
-% quote
-\newcommand*{\quote}[1]{\gdef\@quote{#1}}
-\newcommand*{\@quote}{}
-
 % socials
 \newcommand*{\socials}[1]{\gdef\@socials{#1}}
 \newcommand*{\@socials}{}
 
-% logo
-\newcommand*{\logo}[1]{\gdef\@logo{#1}}
-\newcommand*{\@logo}{}
+% title element on right
+\newcommand*{\titleelement}[1]{\gdef\@titleelement{#1}}
+\newcommand*{\@titleelement}{}
 
 \RequirePackage{setspace}
 
 \newcommand\insertauthor{{\HUGE\textcolor{accent!50!grey!65}{\@firstname}~\textcolor{accent}{\@lastname}}}
-\newcommand\insertquote{{%
-  \begin{adjustbox}{valign=b, minipage=\textwidth}
+
+\newcommand\quote[1]{%
+  \begin{adjustbox}{valign=b, minipage=.5\textwidth}
     \setlength\baselineskip{-0.1ex}
+    \raggedleft
     \scriptsize\color{accent-faded}\itshape%
-    \@quote%
+    #1%
   \end{adjustbox}
-}}
+}
 
 \PassOptionsToPackage{fixed}{fontawesome6}
 \RequirePackage{fontawesome6}
@@ -208,16 +207,13 @@
 \providecommand\logoheight{2ex}
 
 \newcommand\maketitle{%
-  \noindent
-  \begin{minipage}[b]{\linewidth-\quotewidth-1pt} % .95*3/4 = 0.7125
-    \insertauthor
-  \end{minipage}%
-  \hspace{1pt}%
-  \begin{minipage}[b]{\quotewidth} % .95/4 = .2375
-    \insertquote
-  \end{minipage}\\[-0.9ex]
-  \noindent
-  {\color{accent}\rule{\linewidth}{1pt}}
+  \noindent%
+  \insertauthor%
+  \hfill%
+  \smash{\@titleelement}%
+  \\[-.9ex]%
+  \noindent%
+  {\color{accent}\rule{\linewidth}{1pt}}%
   \par\nopagebreak
   % \faderule{\linewidth}{1pt}
   \vspace{-13pt}

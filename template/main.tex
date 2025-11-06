@@ -24,11 +24,17 @@
 
 % metadata and title
 
-\author{john}{doe}
-\quote{%
-  Very\\
-  Interesting\\
-  Quote
+\usepackage{tikz}
+
+% \author{john}{doe}
+\author{Felipe}{Pinto}
+\titleelement{
+  \raisebox{-1.0ex}{\input{gitlab.tex}}
+  % \quote{%
+  %   Very\\
+  %   Interesting\\
+  %   Quote
+  % }
 }
 
 \setlength\secspacebf{15pt} % control spacing
@@ -43,6 +49,7 @@
   \insertwhatsapp{123456789}{(+012)~123~456~789}
   \insertsocialemail{johndoe@mail.com}
   \insertlinkedin{johndoe}
+  \\
   \insertgithub{johndoe}
   \insertgitlab{johndoe}
   \inserttexstackexchange{number}{johndoe}
